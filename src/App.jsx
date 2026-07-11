@@ -789,7 +789,7 @@ export default function App() {
       <footer className="bg-[#05050B] py-12 px-6 border-t border-accent/5 rounded-t-[3rem] md:rounded-t-[4rem] relative z-10 text-center flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
         <div className="flex flex-col items-center md:items-start gap-1">
           <span className="text-sm font-semibold tracking-wider font-sans">Kekeli Tengue</span>
-          <span className="text-xs text-[#F0EFF4]/40 font-mono">Fait avec le vibe coding • 2026</span>
+          <span className="text-xs text-[#F0EFF4]/40 font-mono">© 2026 Kekeli Tengue. Tous droits réservés.</span>
         </div>
         
         {/* Status Indicator "En ligne" */}
