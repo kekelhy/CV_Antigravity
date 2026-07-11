@@ -617,12 +617,12 @@ export default function App() {
                   <GraduationCap size={24} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Baccalauréat en infographie</h3>
-                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université de Lomé</span>
+                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Master en communication publique</h3>
+                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université Laval</span>
                 </div>
               </div>
               <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                2012
+                2016 - 2018
               </span>
             </div>
 
@@ -632,12 +632,12 @@ export default function App() {
                   <GraduationCap size={24} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Master en communication publique</h3>
-                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université Laval</span>
+                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Baccalauréat en infographie</h3>
+                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université de Lomé</span>
                 </div>
               </div>
               <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                2016 - 2018
+                2012
               </span>
             </div>
           </div>
