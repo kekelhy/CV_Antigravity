@@ -622,7 +622,7 @@ export default function App() {
                 </div>
               </div>
               <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                2022
+                2012
               </span>
             </div>
 
