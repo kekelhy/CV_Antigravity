@@ -224,11 +224,57 @@ const ExperienceCard = ({ period, role, company, desc, align, index }) => {
   );
 };
 
+const formationsData = [
+  {
+    year: "En cours",
+    degree: "Baccalauréat en informatique",
+    school: "Université Laval",
+    desc: "Spécialisation en génie logiciel et intelligence artificielle. Approfondissement des architectures systèmes, algorithmes avancés, et bases de données massives dans un cadre académique rigoureux."
+  },
+  {
+    year: "2024",
+    degree: "Certificat en informatique",
+    school: "Université Laval",
+    desc: "Acquisition des compétences fondamentales en programmation (Python, C++), structures de données et modélisation de logiciels. Validation de projets pratiques axés sur le développement web et logiciel."
+  },
+  {
+    year: "2018",
+    degree: "Master en communication publique",
+    school: "Université Laval",
+    desc: "Analyse des stratégies de communication, gestion de l'image de marque et relations publiques. Compétence acquise dans la vulgarisation d'enjeux complexes et la rédaction professionnelle."
+  },
+  {
+    year: "2012",
+    degree: "Baccalauréat en infographie",
+    school: "Université de Lomé",
+    desc: "Conception graphique, théorie des couleurs, typographie et réalisation de supports visuels numériques. Initiation à la modélisation 2D/3D et à l'identité de marque."
+  }
+];
+
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [activeFormationIndex, setActiveFormationIndex] = useState(0);
+
+  const handleFormationChange = (index) => {
+    if (activeFormationIndex === index) return;
+    
+    gsap.to("#formation-detail-card", {
+      opacity: 0,
+      x: -20,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        setActiveFormationIndex(index);
+        gsap.fromTo("#formation-detail-card", 
+          { opacity: 0, x: 20 },
+          { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }
+        );
+      }
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -572,77 +618,73 @@ export default function App() {
         ref={formationRef}
         className="formation-section py-24 md:py-36 px-6 relative z-10"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-20">
             <span className="text-accent text-xs font-mono font-bold tracking-widest uppercase block mb-3">Cursus Académique</span>
             <h2 className="text-4xl md:text-6xl font-serif italic text-[#F0EFF4]">Formation & Diplômes</h2>
           </div>
 
-          {/* Stacked Cards */}
-          <div className="flex flex-col gap-6">
-            <div className="formation-card bg-[#121225] border border-accent/10 hover:border-accent/30 rounded-[2rem] p-8 flex flex-col md:flex-row justify-between items-start md:items-center shadow-lg transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
-                  <GraduationCap size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Baccalauréat en informatique</h3>
-                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université Laval</span>
-                </div>
-              </div>
-              <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                En cours
-              </span>
+          {/* Interactive Timeline Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-stretch mt-12">
+            {/* Left Column: Timeline vertical buttons */}
+            <div className="md:col-span-4 flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible justify-start md:justify-center items-center md:items-stretch gap-4 md:gap-6 border-b md:border-b-0 md:border-r border-accent/10 pb-6 md:pb-0 md:pr-8 relative scrollbar-none">
+              
+              {formationsData.map((form, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleFormationChange(idx)}
+                  className={`flex-shrink-0 md:flex-shrink w-[150px] md:w-full text-center md:text-left py-4 px-6 rounded-2xl transition-all duration-300 border flex flex-col justify-center items-center md:items-start select-none ${
+                    activeFormationIndex === idx 
+                      ? 'bg-accent/10 border-accent/30 text-accent font-bold shadow-[0_0_15px_rgba(212,168,67,0.05)]' 
+                      : 'bg-[#121225]/40 border-accent/5 text-[#F0EFF4]/45 hover:text-[#F0EFF4]/80'
+                  }`}
+                >
+                  <span className="text-[10px] text-accent/50 block font-mono tracking-wider mb-1">DIPLÔME</span>
+                  <span className="font-mono text-sm md:text-base">{form.year}</span>
+                </button>
+              ))}
             </div>
 
-            <div className="formation-card bg-[#121225] border border-accent/10 hover:border-accent/30 rounded-[2rem] p-8 flex flex-col md:flex-row justify-between items-start md:items-center shadow-lg transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
-                  <GraduationCap size={24} />
-                </div>
+            {/* Right Column: Animated Card details */}
+            <div className="md:col-span-8 flex items-center min-h-[320px]">
+              <div 
+                id="formation-detail-card"
+                className="w-full bg-[#121225] border border-accent/10 hover:border-accent/25 rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden flex flex-col justify-between glow-card h-full"
+              >
+                {/* Accent glow corner */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-bl-full pointer-events-none" />
+                
                 <div>
-                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Certificat en informatique</h3>
-                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université Laval</span>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center text-accent shadow-[0_0_15px_rgba(212,168,67,0.15)]">
+                      <GraduationCap size={28} />
+                    </div>
+                    <div>
+                      <span className="text-xs text-accent font-mono uppercase tracking-widest block">{formationsData[activeFormationIndex].year}</span>
+                      <h3 className="text-xl md:text-2xl font-bold text-[#F0EFF4] font-sans mt-0.5">{formationsData[activeFormationIndex].degree}</h3>
+                    </div>
+                  </div>
+                  
+                  <span className="inline-block text-sm md:text-base text-[#F0EFF4]/60 font-medium font-sans">
+                    {formationsData[activeFormationIndex].school}
+                  </span>
+                  
+                  <p className="text-sm md:text-base text-[#F0EFF4]/75 leading-relaxed mt-6 font-sans">
+                    {formationsData[activeFormationIndex].desc}
+                  </p>
+                </div>
+                
+                <div className="mt-8 pt-6 border-t border-accent/5 flex items-center justify-between text-xs text-[#F0EFF4]/40 font-mono">
+                  <span>CURSUS UNIVERSITAIRE</span>
+                  <span>[ UNIVERSITÉ LAVAL / LOMÉ ]</span>
                 </div>
               </div>
-              <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                2024
-              </span>
-            </div>
-
-            <div className="formation-card bg-[#121225] border border-accent/10 hover:border-accent/30 rounded-[2rem] p-8 flex flex-col md:flex-row justify-between items-start md:items-center shadow-lg transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
-                  <GraduationCap size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Master en communication publique</h3>
-                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université Laval</span>
-                </div>
-              </div>
-              <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                2018
-              </span>
-            </div>
-
-            <div className="formation-card bg-[#121225] border border-accent/10 hover:border-accent/30 rounded-[2rem] p-8 flex flex-col md:flex-row justify-between items-start md:items-center shadow-lg transition-all duration-300">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
-                  <GraduationCap size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Baccalauréat en infographie</h3>
-                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université de Lomé</span>
-                </div>
-              </div>
-              <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
-                2012
-              </span>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* G. CONTACT — Le Pont */}
       <section 
