@@ -229,24 +229,28 @@ const formationsData = [
     year: "En cours",
     degree: "Baccalauréat en informatique",
     school: "Université Laval",
+    location: "Université Laval / Québec",
     desc: "Spécialisation en génie logiciel et intelligence artificielle. Approfondissement des architectures systèmes, algorithmes avancés, et bases de données massives dans un cadre académique rigoureux."
   },
   {
     year: "2024",
     degree: "Certificat en informatique",
     school: "Université Laval",
+    location: "Université Laval / Québec",
     desc: "Acquisition des compétences fondamentales en programmation (Python, C++), structures de données et modélisation de logiciels. Validation de projets pratiques axés sur le développement web et logiciel."
   },
   {
     year: "2018",
     degree: "Master en communication publique",
     school: "Université Laval",
+    location: "Université Laval / Québec",
     desc: "Analyse des stratégies de communication, gestion de l'image de marque et relations publiques. Compétence acquise dans la vulgarisation d'enjeux complexes et la rédaction professionnelle."
   },
   {
     year: "2012",
     degree: "Baccalauréat en infographie",
     school: "Université de Lomé",
+    location: "Université de Lomé / Lomé",
     desc: "Conception graphique, théorie des couleurs, typographie et réalisation de supports visuels numériques. Initiation à la modélisation 2D/3D et à l'identité de marque."
   }
 ];
@@ -677,7 +681,7 @@ export default function App() {
                 
                 <div className="mt-8 pt-6 border-t border-accent/5 flex items-center justify-between text-xs text-[#F0EFF4]/40 font-mono">
                   <span>CURSUS UNIVERSITAIRE</span>
-                  <span>[ UNIVERSITÉ LAVAL / LOMÉ ]</span>
+                  <span className="uppercase">[ {formationsData[activeFormationIndex].location} ]</span>
                 </div>
               </div>
             </div>
