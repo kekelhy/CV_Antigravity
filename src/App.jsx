@@ -617,6 +617,21 @@ export default function App() {
                   <GraduationCap size={24} />
                 </div>
                 <div>
+                  <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Baccalauréat en infographie</h3>
+                  <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université de Lomé</span>
+                </div>
+              </div>
+              <span className="mt-4 md:mt-0 font-mono text-sm px-4 py-1.5 rounded-full bg-[#181832] border border-[#2B2B4A] text-accent">
+                2022
+              </span>
+            </div>
+
+            <div className="formation-card bg-[#121225] border border-accent/10 hover:border-accent/30 rounded-[2rem] p-8 flex flex-col md:flex-row justify-between items-start md:items-center shadow-lg transition-all duration-300">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
+                  <GraduationCap size={24} />
+                </div>
+                <div>
                   <h3 className="text-lg font-bold text-[#F0EFF4] font-sans">Master en communication publique</h3>
                   <span className="text-sm text-[#F0EFF4]/60 block mt-0.5">Université Laval</span>
                 </div>
